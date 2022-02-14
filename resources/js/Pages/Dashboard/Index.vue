@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div>This is dashboard, welcome {{ fname }}, {{ lname }}</div>
+                    <p>This is dashboard, welcome {{ fname }}, {{ lname }}</p>
                 </div>
             </div>
         </div>

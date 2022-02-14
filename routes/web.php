@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LeadController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -22,4 +23,7 @@ Auth::routes(['register' => false]);
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index']);
+    Route::get('/leads', [LeadController::class, 'index']);
+    Route::get('/leads/add', [LeadController::class, 'create']);
+    Route::post('/leads/add', [LeadController::class, 'store']);
 });
