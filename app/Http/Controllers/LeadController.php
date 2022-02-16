@@ -34,6 +34,8 @@ class LeadController extends Controller
 
     public function show(Lead $lead)
     {
+        $lead->load(['reminders']);
+        
         return Inertia::render('Leads/View', [
             'leadProp' => $lead
         ]);
@@ -48,13 +50,17 @@ class LeadController extends Controller
     {
         $postData = $request->validate($this->validator);
 
+        $dob = Carbon::parse($postData['dob']);
+
+        $age = $dob->age;
+
         Lead::create([
             'name' => $postData['name'],
             'email' => $postData['email'],
             'phone' => $postData['phone'],
             'interested_package' => $postData['interested_package'],
             'dob' => $postData['dob'],
-            'age' => 1,
+            'age' => $age,
             'branch_id' => 1,
             'added_by' => Auth::user()->id
         ]);
@@ -66,13 +72,16 @@ class LeadController extends Controller
     {
         $postData = $request->validate($this->validator);
 
+        $dob = Carbon::parse($postData['dob']);
+        $age = $dob->age;
+
         $lead->update([
             'name' => $postData['name'],
             'email' => $postData['email'],
             'phone' => $postData['phone'],
             'interested_package' => $postData['interested_package'],
             'dob' => $postData['dob'],
-            'age' => 1,
+            'age' => $age,
             'branch_id' => 1,
             'added_by' => Auth::user()->id
         ]);

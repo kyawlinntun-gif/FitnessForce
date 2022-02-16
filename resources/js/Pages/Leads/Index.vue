@@ -3,7 +3,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>Leads</h1>
+                    <h1 class="float-left">Leads</h1>
+                    <Link href="/leads/add" class="btn btn-primary float-right"
+                        >Add Lead</Link
+                    >
                 </div>
                 <div class="col-md-12">
                     <table class="table table-bordered bg-white">
@@ -12,7 +15,7 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone number</th>
-                            <th>DOB</th>
+                            <th>Age</th>
                             <th>Package</th>
                             <th>Added On</th>
                             <th></th>
@@ -22,11 +25,13 @@
                             <td>{{ lead.name }}</td>
                             <td>{{ lead.email }}</td>
                             <td>{{ lead.phone }}</td>
-                            <td>{{ lead.dob }}</td>
+                            <td>{{ lead.age }}</td>
                             <td>{{ lead.interested_package }}</td>
                             <td>{{ lead.created_at }}</td>
                             <td>
-                                <Link :href="$route('lead.show', { lead })"><font-awesome-icon icon="caret-right"/></Link>
+                                <Link :href="$route('lead.show', { lead })"
+                                    ><font-awesome-icon icon="caret-right"
+                                /></Link>
                             </td>
                         </tr>
                     </table>
@@ -37,19 +42,18 @@
 </template>
 
 <script>
-import Layout from './../../Shared/Layout';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { Link } from '@inertiajs/inertia-vue';
+import Layout from "./../../Shared/Layout";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { Link } from "@inertiajs/inertia-vue";
 
 export default {
-    name: 'Leads.Index',
+    name: "Leads.Index",
     components: { Layout, FontAwesomeIcon, Link },
     props: {
-        leads: {}
-    }
-}
+        leads: {},
+    },
+};
 </script>
 
 <style>
-
 </style>
