@@ -25,7 +25,9 @@
                             <td>{{ lead.dob }}</td>
                             <td>{{ lead.interested_package }}</td>
                             <td>{{ lead.created_at }}</td>
-                            <td></td>
+                            <td>
+                                <Link :href="$route('lead.show', { lead })"><font-awesome-icon icon="caret-right"/></Link>
+                            </td>
                         </tr>
                     </table>
                 </div>
@@ -36,12 +38,14 @@
 
 <script>
 import Layout from './../../Shared/Layout';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { Link } from '@inertiajs/inertia-vue';
 
 export default {
     name: 'Leads.Index',
-    components: { Layout },
+    components: { Layout, FontAwesomeIcon, Link },
     props: {
-        leads: Object
+        leads: {}
     }
 }
 </script>

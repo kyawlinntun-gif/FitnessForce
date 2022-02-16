@@ -10,6 +10,7 @@ if(app) {
         resolve: name => require(`./Pages/${name}`),
         setup({ el, App, props, plugin }) {
             Vue.use(plugin)
+            Vue.prototype.$route = route
     
             new Vue({
                 render: h => h(App, props),

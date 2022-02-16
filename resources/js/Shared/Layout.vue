@@ -10,7 +10,15 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdownLeft" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Manage
+                            </a>
 
+                            <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownLeft">
+                                <Link class="dropdown-item" href="/leads">Leads</Link>
+                            </div>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -38,6 +46,9 @@
 <script>
 import { Link } from '@inertiajs/inertia-vue';
 import axios from 'axios';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faCaretRight } from '@fortawesome/free-solid-svg-icons'
+library.add(faCaretRight)
 
 export default {
     name: 'Layout',

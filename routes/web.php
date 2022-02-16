@@ -26,4 +26,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/leads', [LeadController::class, 'index']);
     Route::get('/leads/add', [LeadController::class, 'create']);
     Route::post('/leads/add', [LeadController::class, 'store']);
+    Route::get('/leads/{lead}', [LeadController::class, 'show'])->name('lead.show');
+    Route::put('/leads/{lead}', [LeadController::class, 'update']);
 });

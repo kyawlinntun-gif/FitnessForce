@@ -17,7 +17,7 @@
                             <input type="text" placeholder="Enter the package interested in" v-model="lead.interested_package" tabindex="5" id="interested_package" class="form-control">
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success">Save</button>
+                            <button type="submit" class="btn btn-success">Update</button>
                             <Link href="/leads" class="btn btn-warning">Back</Link>
                         </div>
                     </div>
@@ -41,16 +41,16 @@
 import Layout from './../../Shared/Layout';
 import { Link } from '@inertiajs/inertia-vue';
 
-
 export default {
-    name: 'Lead.Add',
+    name: 'Lead.View',
     props: {
-        errors: []
+        errors: [],
+        leadProp: []
     },
     components: { Layout, Link },
     methods: {
         async handleSubmit() {
-            let response = await this.$inertia.post('/leads/add', this.lead);
+            let response = await this.$inertia.put(`/leads/${this.lead.id}`, this.lead);
         }
     },
     data() {
@@ -63,6 +63,9 @@ export default {
                 interested_package: ''
             }
         }
+    },
+    created() {
+        this.lead = this.leadProp;
     }
 }
 </script>
