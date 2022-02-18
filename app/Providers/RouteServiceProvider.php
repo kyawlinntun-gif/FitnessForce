@@ -35,6 +35,7 @@ class RouteServiceProvider extends ServiceProvider
         parent::boot();
 
         Route::pattern('lead', '[0-9]+');
+        Route::pattern('reminder', '[0-9]+');
     }
 
     /**

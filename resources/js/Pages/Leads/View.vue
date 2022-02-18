@@ -59,16 +59,16 @@
             <div class="row">
                 <div class="col-md-12">
 
-                    <div class="card" v-if="lead.reminders.lenght > 0">
+                    <div class="card" v-if="lead.reminders.length > 0">
                         <div class="card-header">Lead reminders</div>
                         <div class="card-body">
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item list-group-item-action" v-for="lead in lead.reminders" :key="lead.id">
+                                <li class="list-group-item list-group-item-action" v-for="reminder in lead.reminders" :key="reminder.id">
                                     <div class="row">
-                                        <div class="col-md-6">{{ lead.reminder }}</div>
-                                        <div class="col-md-2">{{ lead.reminder_date }}</div>
-                                        <div class="col-md-2">{{ lead.status }}</div>
-                                        <div class="col-md-2 d-flex justify-content-end"><Link href="#"><font-awesome-icon icon="caret-right"/></Link></div>
+                                        <div class="col-md-6">{{ reminder.reminder }}</div>
+                                        <div class="col-md-2">{{ reminder.reminder_date }}</div>
+                                        <div class="col-md-2">{{ reminder.status }}</div>
+                                        <div class="col-md-2 d-flex justify-content-end"><Link :href="$route('reminder.show', {lead, reminder})"><font-awesome-icon icon="caret-right"/></Link></div>
                                     </div>
                                 </li>
                             </ul>
@@ -77,8 +77,8 @@
 
                     <div class="card" v-else>
                         <div class="card-header">Lead reminders</div>
-                        <div class="card-body">
-                            <Link href="#" class="btn btn-success">Add new reminder</Link>
+                        <div class="card-body d-flex justify-content-center">
+                            <Link :href="`/leads/${lead.id}/reminders/add`" class="btn btn-success">Add new reminder</Link>
                         </div>
                     </div>
 
