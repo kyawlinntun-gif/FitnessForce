@@ -6,17 +6,24 @@
                     <p>This is dashboard, welcome {{ fname }}, {{ lname }}</p>
                 </div>
             </div>
+
+            <ReminderList :reminders="reminders"></ReminderList>
         </div>
     </Layout>
 </template>
 
 <script>
 import Layout from './../../Shared/Layout';
+import ReminderList from './ReminderList';
 
 export default {
     name: 'Dashboard.Index',
-    components: { Layout },
-    props: ['fname', 'lname'],
+    components: { Layout, ReminderList },
+    props: {
+        fname: String,
+        lname: String,
+        reminders: Array
+    },
 }
 </script>
 

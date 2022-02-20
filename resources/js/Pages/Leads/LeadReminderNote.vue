@@ -9,7 +9,7 @@
                         <span class="breadcrumb-sep">/</span>
                         <Link :href="$route('lead.show', {lead})">Lead details</Link>
                         <span class="breadcrumb-sep">/</span>
-                        Reminder View
+                        Reminder add note
                     </h1>
                 </div>
             </div>
@@ -18,10 +18,17 @@
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-header">
-                            Add reminder
+                            Add note
                         </div>
                         <div class="card-body">
-                            <ReminderForm :main-reminder="reminder" :main-lead="lead" :errors="errors" @reminderForm="handleSubmit"></ReminderForm>
+                            <form @submit.prevent="handleSubmit">
+                                <div class="form-group">
+                                    <label for="note">Note</label>
+                                    <textarea id="note" class="form-control" v-model="reminderNote.note"></textarea>
+                                    <div v-if="errors.note" class="text-danger text-small">{{ errors.note }}</div>
+                                </div>
+                                <button type="submit" class="btn btn-success">Close</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -34,31 +41,27 @@
 <script>
 import Layout from './../../Shared/Layout';
 import { Link } from '@inertiajs/inertia-vue';
-import ReminderForm from './ReminderForm';
 
 export default {
-    name: 'Leads.LeadReminderView',
-    components: { Layout, Link, ReminderForm },
+    name: 'Leads.LeadReminderNote',
+    components: {
+        Layout, Link
+    },
     props: {
-        lead: [],
         errors: [],
-        reminderProp: []
+        lead: [],
+        reminder: []
     },
     data() {
         return {
-            reminder: {
-                reminder: '',
-                reminder_date: ''
+            reminderNote: {
+                note: ''
             }
         }
     },
-    created() {
-        this.reminder = this.reminderProp;
-    },
     methods: {
-        async handleSubmit(data) {
-            this.reminder = data;
-            await this.$inertia.put(`/leads/${this.lead.id}/reminders/${this.reminderProp[0].id}`, this.reminder);
+        async handleSubmit() {
+            await this.$inertia.post(`/leads/${this.lead.id}/reminders/${this.reminder.id}/notes`, this.reminderNote);
         }
     }
 }
@@ -69,3 +72,4 @@ export default {
     color: gray;
 }
 </style>
+

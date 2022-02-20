@@ -15,37 +15,43 @@
         </div>
         <div class="form-group" v-else>
             <button type="submit" class="btn btn-success">Add reminder</button>
-            <button class="btn btn-outline-danger" @click.prevent="handleClose">Close reminder</button>
+            <Link :href="$route('reminder.note', {lead, reminder})" class="btn btn-outline-danger">Close reminder</Link>
         </div>
     </form>
 </template>
 
 <script>
+import { Link } from '@inertiajs/inertia-vue';
 export default {
     name: 'ReminderForm',
     props: {
         errors: [],
-        mainReminder: []
+        mainReminder: [],
+        mainLead: []
+    },
+    components: {
+        Link
     },
     data() {
         return {
             reminder: {
                 reminder: '',
                 reminder_date: ''
-            }
+            },
+            lead: {}
         }
     },
     created() {
         if(this.mainReminder? true : false) {
             this.reminder = this.mainReminder[0];
         }
+        if(this.mainLead? true: false) {
+            this.lead = this.mainLead;
+        }
     },
     methods: {
         handleSubmit() {
             this.$emit('reminderForm', this.reminder);
-        },
-        handleClose() {
-            this.$emit('reminderFormClose', this.reminder);
         }
     }
 }

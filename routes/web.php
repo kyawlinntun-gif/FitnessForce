@@ -38,5 +38,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/leads/{lead}/reminders/add', [ReminderController::class, 'store']);
     Route::get('/leads/{lead}/reminders/{reminder}', [ReminderController::class, 'show'])->name('reminder.show');
     Route::put('/leads/{lead}/reminders/{reminder}', [ReminderController::class, 'update']);
+    Route::get('/leads/{lead}/reminders/{reminder}/notes', [ReminderController::class, 'showNote'])->name('reminder.note');
+    Route::post('/leads/{lead}/reminders/{reminder}/notes', [ReminderController::class, 'storeNote'])->name('reminder.note');
     /* ---------- End of Reminders ---------- */
 });

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Lead;
 use Illuminate\Database\Eloquent\Model;
 
 class Reminder extends Model
@@ -11,5 +12,10 @@ class Reminder extends Model
     public function getStatusAttribute($status)
     {
         return ucfirst($status);
+    }
+
+    public function lead()
+    {
+        return $this->belongsTo(Lead::class);
     }
 }
