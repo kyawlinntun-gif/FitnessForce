@@ -17330,8 +17330,6 @@ __webpack_require__.r(__webpack_exports__);
     ReminderList: _ReminderList__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   props: {
-    fname: String,
-    lname: String,
     reminders: Array
   }
 });
@@ -59876,9 +59874,7 @@ var render = function () {
             _c("p", [
               _vm._v(
                 "This is dashboard, welcome " +
-                  _vm._s(_vm.fname) +
-                  ", " +
-                  _vm._s(_vm.lname)
+                  _vm._s(_vm.$page.props.auth.user.name)
               ),
             ]),
           ]),
@@ -61181,10 +61177,9 @@ var render = function () {
                     _c(
                       "a",
                       {
-                        pre: true,
+                        staticClass: "nav-link dropdown-toggle",
                         attrs: {
                           id: "navbarDropdown",
-                          class: "nav-link dropdown-toggle",
                           href: "#",
                           role: "button",
                           "data-toggle": "dropdown",
@@ -61194,7 +61189,9 @@ var render = function () {
                       },
                       [
                         _vm._v(
-                          "\n                            Tun Aung\n                        "
+                          "\n                            " +
+                            _vm._s(_vm.$page.props.auth.user.name) +
+                            "\n                        "
                         ),
                       ]
                     ),

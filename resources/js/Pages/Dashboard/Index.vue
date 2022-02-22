@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <p>This is dashboard, welcome {{ fname }}, {{ lname }}</p>
+                    <p>This is dashboard, welcome {{ $page.props.auth.user.name }}</p>
                 </div>
             </div>
 
@@ -20,8 +20,6 @@ export default {
     name: 'Dashboard.Index',
     components: { Layout, ReminderList },
     props: {
-        fname: String,
-        lname: String,
         reminders: Array
     },
 }
